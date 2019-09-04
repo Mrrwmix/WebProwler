@@ -26,6 +26,13 @@ body {
   color: var(--main-color);
 }
 
+a {
+  color: var(--tertiary-color);
+}
+a:hover {
+  color: slategray;
+}
+
 h1 {
   color: var(--main-color);
   font-size: 4rem;
