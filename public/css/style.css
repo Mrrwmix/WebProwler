@@ -16,7 +16,7 @@
 
 body {
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   height: 100vh;
   background-image: radial-gradient(
     var(--blackish),
@@ -89,10 +89,57 @@ img {
   background-clip: text;
   font-family: "kinifedregular";
 }
+.a-body,
+.a-headline,
+.a-link,
+.a-comment {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.a-headline {
+  padding: 0.5rem;
+  font-size: 3rem;
+  color: var(--main-color);
+  background: var(--darkpurp);
+}
+
+.spaced {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 0.3rem solid slategray;
+}
+
+.a-body {
+  font-size: 2rem;
+  color: var(--secondary-color);
+}
+
+.a-link {
+  margin: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--tertiary-color);
+}
+.a-comment > button {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  background-color: var(--blackish);
+  color: var(--main-color);
+  width: 100%;
+  border: 0.1rem solid var(--darkpurp);
+}
+
+.a-comment > button:hover {
+  background-color: var(--secondary-color);
+  color: var(--blackish);
+}
 
 .row {
   display: -webkit-flex;
   display: flex;
+  flex-wrap: wrap;
   background-color: var(--darkpurp);
 }
 
@@ -107,6 +154,11 @@ img {
   width: 100%;
   color: var(--tertiary-color);
   background: var(--darkpurp);
+}
+
+.art {
+  background: var(--blackish);
+  color: var(--main-color);
 }
 
 .gfooter {
