@@ -1,14 +1,113 @@
+:root {
+  --main-color: #8b358c;
+  --secondary-color: #632973;
+  --tertiary-color: #632973;
+  --darkpurp: #241c40;
+  --blackish: #0d0400;
+}
+
+@font-face {
+  font-family: "kinifedregular";
+  src: url("../font/kinifed_-webfont.woff2") format("woff2"),
+    url("../font/kinifed_-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-image: radial-gradient(
+    var(--blackish),
+    var(--darkpurp),
+    var(--tertiary-color)
+  );
+  color: var(--main-color);
+}
+
 h1 {
-  color: teal;
+  color: var(--main-color);
   font-size: 10rem;
+}
+
+h2 {
+  color: var(--secondary-color);
+  font-size: 3rem;
 }
 
 .header-container {
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 10% 15% 75%;
+  background: var(--blackish);
+  padding: 0;
+  border-bottom: 0.2rem solid var(--darkpurp);
 }
 
 .header-links {
   display: grid;
   grid-template-columns: space-between;
+}
+
+.header-img {
+  max-width: 100%;
+  background: var(--blackish);
+  color: var(--main-color);
+  text-align: left;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.link {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 3rem;
+  color: transparent;
+  background-image: linear-gradient(var(--main-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.link:hover {
+  color: var(--tertiary-color);
+  background: var(--darkpurp);
+}
+
+#headerText {
+  margin: auto;
+  max-width: 100%;
+  font-size: 3rem;
+  text-align: center;
+  color: transparent;
+  background-image: linear-gradient(var(--main-color), var(--darkpurp));
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-family: "kinifedregular";
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "left middle right";
+  background-color: var(--darkpurp);
+}
+
+.gheader {
+  grid-area: "header";
+  text-align: center;
+}
+
+.gleft {
+  grid-area: "left";
+}
+
+.gmiddle {
+  grid-area: "middle";
+}
+
+.gright {
+  grid-area: "right";
 }
