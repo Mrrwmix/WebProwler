@@ -1,0 +1,14 @@
+h1 {
+  color: teal;
+  font-size: 10rem;
+}
+
+.header-container {
+  display: grid;
+  grid-template-columns: 25% 75%;
+}
+
+.header-links {
+  display: grid;
+  grid-template-columns: space-between;
+}
