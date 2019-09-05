@@ -9,6 +9,7 @@ module.exports = function(app) {
   });
   app.get("/news", (req, res) => {
     Articles.find({})
+      .sort({ date: -1 })
       .then(function(results) {
         res.render("news", { results });
       })
