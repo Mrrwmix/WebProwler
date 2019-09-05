@@ -19,12 +19,22 @@ module.exports = function(app) {
     }
   });
 
+  app.post("/comments", (req, res) => {
+    console.log(req.body);
+    let comment = { article: req.body.id, comment: req.body.comment };
+    Comments.create(comment)
+      .then(addedComment => console.log(addedComment))
+      .catch(err => console.error(err));
+  });
+
+  // Scraping functions
+
   const news = () => {
     axios.get("https://www.truthdig.com/news/").then(response => {
-      var $ = cheerio.load(response.data);
+      const $ = cheerio.load(response.data);
 
       $("article.archive-item").each(function(index, element) {
-        var arty = {};
+        let arty = {};
         arty.headline = $(this)
           .children(".archive-item__content")
           .children(".archive-item__title")

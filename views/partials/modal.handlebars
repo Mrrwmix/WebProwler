@@ -1,0 +1,16 @@
+<div class="modal" id="commModal">
+    <div class="modal-header">Comments</div>
+    <hr />
+    <div class="modal-content">
+        {{#each comments}}
+        <p hidden article={{article}}>{{date}}</p>
+        <p hidden article={{article}}>{{comment}}</p>
+        <hr />
+        {{/each}}
+    </div>
+    <div class="modal-footer">
+        <input type="text" class="text" placeholder="Add a comment" id="commento">
+        <button id="addComment">Submit</button>
+        <button id="close">Close</button>
+    </div>
+</div>

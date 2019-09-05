@@ -11,7 +11,14 @@ module.exports = function(app) {
     Articles.find({})
       .sort({ date: -1 })
       .then(function(results) {
-        res.render("news", { results });
+        Comments.find({})
+          .then(function(comments) {
+            res.render("news", { results, comments });
+          })
+          .catch(function(err) {
+            console.error(err);
+            res.status(500).send("oops");
+          });
       })
       .catch(function(err) {
         console.error(err);

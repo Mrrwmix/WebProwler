@@ -182,6 +182,49 @@ img {
   border: 0.2rem solid var(--main-color);
 }
 
+.modal {
+  border: 1px solid var(--blackish);
+  padding: 0.2rem;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 12%;
+  top: 10%;
+  width: 75%;
+  height: 75%;
+  overflow: auto;
+  background-color: var(--darkpurp);
+}
+.modal-header {
+  padding: 2rem;
+  font-size: 2rem;
+  text-align: center;
+  color: var(--main-color);
+}
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.modal-footer > input {
+  width: 90%;
+}
+.modal-footer > #addComment {
+  width: 5%;
+}
+#close {
+  margin-top: 2rem;
+  color: var(--tertiary-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#close:hover,
+#close:focus {
+  color: var(--secondary-color);
+  text-decoration: none;
+  cursor: pointer;
+}
 @media (max-width: 700px) {
   .row {
     -webkit-flex-direction: column;
