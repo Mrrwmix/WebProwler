@@ -7,6 +7,7 @@ module.exports = function(app) {
   app.post("/update/:id", (req, res) => {
     switch (req.params.id) {
       case "coding":
+        coding(res);
         break;
       case "gaming":
         break;
@@ -69,6 +70,29 @@ module.exports = function(app) {
         console.error(err);
         res.status(500).send("No new articles");
       }
+    });
+  };
+
+  const coding = res => {
+    axios.get("https://www.freecodecamp.org/news/").then(function(response) {
+      const $ = cheerio.load(response.data, {
+        xml: { normalizeWhitespace: true }
+      });
+      let results = [];
+      $("h2.post-card-title").each(function(i, element) {
+        let articles = {};
+        articles.headline = $(element)
+          .children()
+          .text()
+          .trim();
+        articles.url = $(element)
+          .find("a")
+          .attr("href");
+        results.push({
+          headline: title,
+          link: "https://www.freecodecamp.org" + link
+        });
+      });
     });
   };
 };
