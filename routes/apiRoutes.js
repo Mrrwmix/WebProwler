@@ -10,6 +10,7 @@ module.exports = function(app) {
         coding(res);
         break;
       case "gaming":
+        gaming(res);
         break;
       case "news":
         console.log("News");
@@ -96,6 +97,48 @@ module.exports = function(app) {
             $(element)
               .find("a")
               .attr("href");
+          Articles.create(arty)
+            .then(function(addedArticle) {
+              console.log(addedArticle);
+            })
+            .catch(err => console.error(err));
+        });
+        res.status(200).send("Updated!");
+      } catch (err) {
+        console.error(err);
+        res.status(500).send("No new articles");
+      }
+    });
+  };
+
+  const gaming = res => {
+    axios.get("https://warframe-school.com/").then(function(response) {
+      const $ = cheerio.load(response.data, {
+        xml: { normalizeWhitespace: true }
+      });
+      try {
+        $("div.hotwp-fp05-post").each(function(i, element) {
+          console.log(element);
+          let arty = {};
+          arty.headline = $(element)
+            .children(".hotwp-fp05-post-details")
+            .children(".hotwp-fp05-post-title")
+            .children("a")
+            .text()
+            .trim();
+          arty.category = "gaming";
+          arty.blurb = $(element)
+            .children(".hotwp-fp05-post-details")
+            .children(".hotwp-fp05-post-snippet")
+            .children("p")
+            .text()
+            .trim();
+
+          arty.url = $(element)
+            .children(".hotwp-fp05-post-details")
+            .children(".hotwp-fp05-post-title")
+            .children("a")
+            .attr("href");
           Articles.create(arty)
             .then(function(addedArticle) {
               console.log(addedArticle);

@@ -11,7 +11,7 @@ module.exports = function(app) {
     Articles.find({
       category: "news"
     })
-      .sort({ date: -1 })
+      .sort({ date: 1 })
       .then(function(results) {
         Comments.find({})
           .then(function(comments) {
@@ -31,7 +31,7 @@ module.exports = function(app) {
     Articles.find({
       category: "coding"
     })
-      .sort({ date: -1 })
+      .sort({ date: 1 })
       .then(function(results) {
         Comments.find({})
           .then(function(comments) {
@@ -48,7 +48,24 @@ module.exports = function(app) {
       });
   });
   app.get("/gaming", (req, res) => {
-    res.render("gaming");
+    Articles.find({
+      category: "gaming"
+    })
+      .sort({ date: 1 })
+      .then(function(results) {
+        Comments.find({})
+          .then(function(comments) {
+            res.render("gaming", { results, comments });
+          })
+          .catch(function(err) {
+            console.error(err);
+            res.status(500).send("oops");
+          });
+      })
+      .catch(function(err) {
+        console.error(err);
+        res.status(500).send("oops");
+      });
   });
   app.get("*", (req, res) => {
     res.render("404");
