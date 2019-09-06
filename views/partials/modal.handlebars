@@ -3,14 +3,14 @@
     <hr />
     <div class="modal-content">
         {{#each comments}}
-        <p hidden article={{article}}>{{date}}</p>
-        <p hidden article={{article}}>{{comment}}</p>
-        <hr />
+        <p hidden article={{article}} class="cDate">{{date}}:</p>
+        <p hidden article={{article}} class="c">{{comment}}</p>
+        <p hidden article={{article}} class="comment-hr"></p>
         {{/each}}
     </div>
     <div class="modal-footer">
         <input type="text" class="text" placeholder="Add a comment" id="commento">
         <button id="addComment">Submit</button>
-        <button id="close">Close</button>
+        <div class="close-box"><button id="close">Close</button></div>
     </div>
 </div>

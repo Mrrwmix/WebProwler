@@ -12,7 +12,7 @@ module.exports = function(app) {
         break;
       case "news":
         console.log("News");
-        news();
+        news(res);
         break;
       default:
         res.status(500).send("No results found");
@@ -23,43 +23,52 @@ module.exports = function(app) {
     console.log(req.body);
     let comment = { article: req.body.id, comment: req.body.comment };
     Comments.create(comment)
-      .then(addedComment => console.log(addedComment))
-      .catch(err => console.error(err));
+      .then(addedComment => {
+        console.log(addedComment);
+        res.json(addedComment);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).send("Oops!");
+      });
   });
 
   // Scraping functions
 
-  const news = () => {
+  const news = res => {
     axios.get("https://www.truthdig.com/news/").then(response => {
       const $ = cheerio.load(response.data);
 
-      $("article.archive-item").each(function(index, element) {
-        let arty = {};
-        arty.headline = $(this)
-          .children(".archive-item__content")
-          .children(".archive-item__title")
-          .children("a")
-          .text();
-        arty.category = "news";
-        arty.blurb = $(this)
-          .children(".archive-item__content")
-          .children(".archive-item__excerpt")
-          .children("p")
-          .text();
-        arty.url = $(this)
-          .children(".archive-item__content")
-          .children(".archive-item__title")
-          .children("a")
-          .attr("href");
-        Articles.create(arty)
-          .then(function(addedArticle) {
-            console.log(addedArticle);
-            res.status(200).send("Updated!");
-          })
-          .catch(function(err) {
-            console.error(err);
-          });
-      });
+      try {
+        $("article.archive-item").each(function(index, element) {
+          let arty = {};
+          arty.headline = $(this)
+            .children(".archive-item__content")
+            .children(".archive-item__title")
+            .children("a")
+            .text();
+          arty.category = "news";
+          arty.blurb = $(this)
+            .children(".archive-item__content")
+            .children(".archive-item__excerpt")
+            .children("p")
+            .text();
+          arty.url = $(this)
+            .children(".archive-item__content")
+            .children(".archive-item__title")
+            .children("a")
+            .attr("href");
+          Articles.create(arty)
+            .then(function(addedArticle) {
+              console.log(addedArticle);
+            })
+            .catch(err => console.error(err));
+        });
+        res.status(200).send("Updated!");
+      } catch (err) {
+        console.error(err);
+        res.status(500).send("No new articles");
+      }
     });
   };
 };

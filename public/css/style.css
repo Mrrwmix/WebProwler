@@ -1,7 +1,7 @@
 :root {
   --main-color: #8b358c;
   --secondary-color: #632973;
-  --tertiary-color: #632973;
+  --tertiary-color: #2e911c;
   --darkpurp: #241c40;
   --blackish: #0d0400;
 }
@@ -112,6 +112,16 @@ img {
   background: var(--darkpurp);
 }
 
+#updator {
+  font-size: 1.5rem;
+}
+
+#updator:hover,
+#updator:focus {
+  cursor: pointer;
+  background-color: var(--darkpurp);
+  color: var(--tertiary-color);
+}
 .spaced {
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -183,7 +193,7 @@ img {
 }
 
 .modal {
-  border: 1px solid var(--blackish);
+  border: 3px solid var(--blackish);
   padding: 0.2rem;
   display: none;
   position: fixed;
@@ -207,12 +217,42 @@ img {
   flex-wrap: wrap;
 }
 .modal-footer > input {
+  height: 3rem;
+  font-size: 3rem;
+  margin-top: 2rem;
   width: 90%;
 }
 .modal-footer > #addComment {
-  width: 5%;
+  background-color: var(--blackish);
+  color: var(--main-color);
+  font-size: 2.5rem;
+}
+.modal-footer > #addComment:hover,
+#addComment:focus {
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: var(--blackish);
+}
+.comment-hr {
+  height: 3px;
+  width: 100%;
+  border-top: 1px dashed slategray;
+}
+.cDate {
+  color: slategray;
+}
+.c {
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+}
+.close-box {
+  width: 100%;
+  position: relative;
+  bottom: 0;
 }
 #close {
+  width: 100%;
+  background-color: var(--blackish);
   margin-top: 2rem;
   color: var(--tertiary-color);
   font-size: 1.2rem;
@@ -222,6 +262,7 @@ img {
 #close:hover,
 #close:focus {
   color: var(--secondary-color);
+  background-color: var(--blackish);
   text-decoration: none;
   cursor: pointer;
 }

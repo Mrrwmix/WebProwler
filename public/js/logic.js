@@ -11,8 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
         body: ""
       }
     )
-      .then(response => console.log(response))
-      .catch(console.log("No updates available"));
+      .then(response => {
+        location.reload();
+      })
+      .catch(err => {
+        if (err) {
+          document.getElementById("updator").textContent =
+            "No new articles available!";
+        }
+      });
   };
 
   let modal = document.getElementById("commModal");
@@ -23,8 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     currentId = this.getAttribute("data-id");
     console.log(currentId);
     Array.from(document.querySelectorAll("p")).forEach(function(element) {
-      console.log(element);
-      console.log(element.getAttribute("article"));
       if (element.getAttribute("article") === currentId) {
         element.removeAttribute("hidden");
       }
@@ -44,24 +49,21 @@ document.addEventListener("DOMContentLoaded", () => {
     currentId = null;
   };
 
-  //   window.onclick = e => {
-  //     if (e.target !== modal) {
-  //       modal.style.display = "none";
-  //     }
-  //   };
-
   document.getElementById("addComment").onclick = () => {
     let comment = document.getElementById("commento").value;
     let objecto = { id: currentId, comment: comment };
-
-    console.log(objecto);
 
     fetch("/comments", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(objecto)
     })
-      .then(console.log("success"))
-      .catch(console.log("failure"));
+      .then(response => {
+        location.reload();
+        document.getElementById("commento").value = "";
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 });
