@@ -78,21 +78,35 @@ module.exports = function(app) {
       const $ = cheerio.load(response.data, {
         xml: { normalizeWhitespace: true }
       });
-      let results = [];
-      $("h2.post-card-title").each(function(i, element) {
-        let articles = {};
-        articles.headline = $(element)
-          .children()
-          .text()
-          .trim();
-        articles.url = $(element)
-          .find("a")
-          .attr("href");
-        results.push({
-          headline: title,
-          link: "https://www.freecodecamp.org" + link
+      try {
+        $("h2.post-card-title").each(function(i, element) {
+          let arty = {};
+          arty.headline = $(element)
+            .children()
+            .text()
+            .trim();
+          arty.category = "coding";
+          arty.blurb = $(element)
+            .siblings("span")
+            .children("a")
+            .text()
+            .trim();
+          arty.url =
+            "https://www.freecodecamp.org" +
+            $(element)
+              .find("a")
+              .attr("href");
+          Articles.create(arty)
+            .then(function(addedArticle) {
+              console.log(addedArticle);
+            })
+            .catch(err => console.error(err));
         });
-      });
+        res.status(200).send("Updated!");
+      } catch (err) {
+        console.error(err);
+        res.status(500).send("No new articles");
+      }
     });
   };
 };
