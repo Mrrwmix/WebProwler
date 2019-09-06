@@ -26,12 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
     element.addEventListener("click", nonstopDeletion, false)
   );
   function nonstopDeletion() {
+    let theID = this.getAttribute("comment");
     fetch(`/comments/${this.getAttribute("comment")}`, {
       method: "DELETE",
       body: ""
     })
       .then(response => {
-        location.reload();
+        Array.from(document.querySelectorAll("p")).forEach(function(element) {
+          if (element.getAttribute("comment") === theID) {
+            element.setAttribute("hidden", true);
+          }
+        });
       })
       .catch(err => {
         if (err) {

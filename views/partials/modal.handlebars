@@ -3,10 +3,10 @@
     <hr />
     <div class="modal-content">
         {{#each comments}}
-        <p hidden article={{article}} class="cDate">{{date}}:</p>
+        <p hidden article={{article}} class="cDate" comment={{_id}}>{{date}}:</p>
         <p href="#!" hidden article={{article}} class="del" comment={{_id}}>Delete comment</p>
-        <p hidden article={{article}} class="c">{{comment}}</p>
-        <p hidden article={{article}} class="comment-hr"></p>
+        <p hidden article={{article}} class="c" comment={{_id}}>{{comment}}</p>
+        <p hidden article={{article}} class="comment-hr" comment={{_id}}></p>
         {{/each}}
     </div>
     <div class="modal-footer">

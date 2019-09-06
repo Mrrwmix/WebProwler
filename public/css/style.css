@@ -38,6 +38,12 @@ h1 {
   font-size: 4rem;
 }
 
+h1.gheader {
+  background: var(--blackish);
+  color: var(--tertiary-color);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
 h2 {
   color: var(--secondary-color);
   font-size: 3rem;
