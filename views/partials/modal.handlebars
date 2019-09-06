@@ -4,6 +4,7 @@
     <div class="modal-content">
         {{#each comments}}
         <p hidden article={{article}} class="cDate">{{date}}:</p>
+        <p href="#!" hidden article={{article}} class="del" comment={{_id}}>Delete comment</p>
         <p hidden article={{article}} class="c">{{comment}}</p>
         <p hidden article={{article}} class="comment-hr"></p>
         {{/each}}

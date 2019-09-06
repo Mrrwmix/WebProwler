@@ -21,14 +21,31 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
   };
+  const deletors = document.getElementsByClassName("del");
+  Array.from(deletors).forEach(element =>
+    element.addEventListener("click", nonstopDeletion, false)
+  );
+  function nonstopDeletion() {
+    fetch(`/comments/${this.getAttribute("comment")}`, {
+      method: "DELETE",
+      body: ""
+    })
+      .then(response => {
+        location.reload();
+      })
+      .catch(err => {
+        if (err) {
+          console.log(err);
+        }
+      });
+  }
 
   let modal = document.getElementById("commModal");
-  let openComments = document.getElementsByClassName("openComments");
+  const openComments = document.getElementsByClassName("openComments");
   let currentId = null;
 
   function displayModal() {
     currentId = this.getAttribute("data-id");
-    console.log(currentId);
     Array.from(document.querySelectorAll("p")).forEach(function(element) {
       if (element.getAttribute("article") === currentId) {
         element.removeAttribute("hidden");

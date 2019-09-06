@@ -35,6 +35,18 @@ module.exports = function(app) {
       });
   });
 
+  app.delete("/comments/:id", (req, res) => {
+    Comments.deleteOne({ _id: req.params.id }, (err, success) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Failed to delete comment");
+      } else {
+        console.log(success);
+        res.status(200).send("Deleted!");
+      }
+    });
+  });
+
   // Scraping functions
 
   const news = res => {

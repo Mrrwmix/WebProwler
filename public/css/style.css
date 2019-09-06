@@ -237,6 +237,14 @@ img {
   width: 100%;
   border-top: 1px dashed slategray;
 }
+.del {
+  float: right;
+  color: var(--tertiary-color);
+}
+.del:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
 .cDate {
   color: slategray;
 }
