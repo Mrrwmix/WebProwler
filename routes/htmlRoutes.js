@@ -11,7 +11,7 @@ module.exports = function(app) {
     Articles.find({
       category: "news"
     })
-      .sort({ date: 1 })
+      .sort({ date: -1 })
       .then(function(results) {
         Comments.find({})
           .then(function(comments) {
@@ -31,7 +31,7 @@ module.exports = function(app) {
     Articles.find({
       category: "coding"
     })
-      .sort({ date: 1 })
+      .sort({ date: -1 })
       .then(function(results) {
         Comments.find({})
           .then(function(comments) {
@@ -51,7 +51,7 @@ module.exports = function(app) {
     Articles.find({
       category: "gaming"
     })
-      .sort({ date: 1 })
+      .sort({ date: -1 })
       .then(function(results) {
         Comments.find({})
           .then(function(comments) {
@@ -71,35 +71,3 @@ module.exports = function(app) {
     res.render("404");
   });
 };
-
-// axios logic to update news articles
-// axios.get("https://www.truthdig.com/news/").then(response => {
-//   var $ = cheerio.load(response.data);
-//   var responses = {};
-
-//   $("article.archive-item").each(function(index, element) {
-//     var arty = {};
-//     arty.headline = $(this)
-//       .children(".archive-item__content")
-//       .children(".archive-item__title")
-//       .children("a")
-//       .text();
-//     arty.category = "news";
-//     arty.blurb = $(this)
-//       .children(".archive-item__content")
-//       .children(".archive-item__excerpt")
-//       .children("p")
-//       .text();
-//     arty.url = $(this)
-//       .children(".archive-item__content")
-//       .children(".archive-item__title")
-//       .children("a")
-//       .attr("href");
-//     Articles.create(arty)
-//       .then(function(addedArticle) {
-//         console.log(addedArticle);
-//       })
-//       .catch(function(err) {
-//         console.error(err);
-//       });
-//   });
