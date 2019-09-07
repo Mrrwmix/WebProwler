@@ -11,7 +11,7 @@ module.exports = function(app) {
     Articles.find({
       category: "news"
     })
-      .sort({ date: -1 })
+      .sort({ _id: 1 })
       .then(function(results) {
         Comments.find({})
           .then(function(comments) {
@@ -31,7 +31,7 @@ module.exports = function(app) {
     Articles.find({
       category: "coding"
     })
-      .sort({ date: -1 })
+      .sort({ _id: 1 })
       .then(function(results) {
         Comments.find({})
           .then(function(comments) {
@@ -51,7 +51,7 @@ module.exports = function(app) {
     Articles.find({
       category: "gaming"
     })
-      .sort({ date: -1 })
+      .sort({ _id: 1 })
       .then(function(results) {
         Comments.find({})
           .then(function(comments) {
