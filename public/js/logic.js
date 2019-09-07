@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const loading = document.getElementById("loading");
+
   document.getElementById("updator").onclick = () => {
+    loading.style.display = "block";
     updator();
   };
 
@@ -15,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         location.reload();
       })
       .catch(err => {
+        loading.style.display = "none";
         if (err) {
           document.getElementById("updator").textContent =
             "No new articles available!";
