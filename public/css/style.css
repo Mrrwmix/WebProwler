@@ -27,11 +27,12 @@ body {
   background-size: cover;
   background-repeat: repeat-y;
   height: 100vh;
-  background-image: radial-gradient(
+  /* background-image: radial-gradient(
     var(--blackish),
     var(--darkpurp),
     var(--tertiary-color)
-  );
+  ); */
+  background-image: url("../images/pbg.jpg");
   color: var(--main-color);
 }
 
