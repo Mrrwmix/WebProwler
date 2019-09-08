@@ -110,15 +110,15 @@ img {
   background: var(--darkpurp);
 }
 .textContainer {
-  width: 58vw;
+  width: 59vw;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 #headerText {
-  margin: auto;
-  font-size: 5.8vw;
+  font-size: 6.6vw;
+  width: 59vw;
   text-align: center;
   color: transparent;
   background-image: linear-gradient(var(--main-color), var(--darkpurp));
